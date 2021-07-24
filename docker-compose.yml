@@ -1,0 +1,25 @@
+version: "3.4"
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/dev-web.dockerfile
+    container_name: scrap_web
+    restart: unless-stopped
+    ports:
+      - ${DOCKER_WEB_PORT-8585}:80
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - cache
+    environment:
+      MODULE_NAME: app.web_app.main
+
+  cache:
+    image: redis:6.0.5
+    container_name: scrap_cache
+    restart: unless-stopped
+    volumes:
+      - ./../web-scrap-resources/cache:/data
+      - ./etc/redis-dev.conf:/usr/local/etc/redis/redis-dev.conf
+    command: ["redis-server", "/usr/local/etc/redis/redis-dev.conf"]

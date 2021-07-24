@@ -1,0 +1,11 @@
+{
+    "python.pythonPath": "/seu-python/bin/python",
+    "python.formatting.provider": "black",
+    "editor.rulers": [
+        88,
+        110
+    ],
+    "python.languageServer": "Pylance",
+    "python.linting.mypyEnabled": true,
+    "python.linting.mypyPath": "/seu-python/bin/mypy"
+}

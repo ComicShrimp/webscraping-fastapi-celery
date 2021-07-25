@@ -1,1 +1,0 @@
-web: uvicorn app.web_app.main:app

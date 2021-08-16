@@ -3,7 +3,7 @@ services:
   web:
     build:
       context: .
-      dockerfile: ./dockerfiles/dev-web.dockerfile
+      dockerfile: ./docker/dev-web.dockerfile
     container_name: scrap_web
     restart: unless-stopped
     ports:

@@ -24,6 +24,4 @@ else
     echo "There is no script $PRE_START_PATH"
 fi
 
-# Start Uvicorn with live reload
-# Coloquei a pasta ./sisifo para impedir que o backend reinicie por conta do front-end
-exec uvicorn --reload --reload-dir=./sisifo --host $HOST --port $PORT --log-level $LOG_LEVEL "$APP_MODULE"
+exec uvicorn --reload --reload-dir=./app --host $HOST --port $PORT --log-level $LOG_LEVEL "$APP_MODULE"

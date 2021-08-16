@@ -5,7 +5,7 @@
         <img src="../assets/Logo.svg" alt="World Dashboard logo" id="logo" />
       </b-navbar-brand>
       <b-navbar-nav>
-        <b-nav-item class="navbar-item"> <NuxtLink to="/home">Home</NuxtLink></b-nav-item>
+        <b-nav-item class="navbar-item"> <NuxtLink to="/">Inicio</NuxtLink></b-nav-item>
         <b-nav-item href="#">Florestas</b-nav-item>
         <b-nav-item href="#">Ar</b-nav-item>
         <b-nav-item href="#">Água</b-nav-item>

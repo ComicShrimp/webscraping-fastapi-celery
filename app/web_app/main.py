@@ -69,6 +69,7 @@ def connect_redis():
     return redis.Redis(host="cache", port=6379)
 
 
+# TODO: aumentar expiração
 EXPIRATION = 30
 
 

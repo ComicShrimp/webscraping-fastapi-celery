@@ -33,6 +33,8 @@ def get_metric_from_worldometers(rel):
     parent = bs.find("span", {"rel": rel})
     numbers = parent.findChildren("span")
 
+    # Provavelmente não é o melhor jeito de pegar esse valor numérico mas funciona
+    # TODO: melhorar essa metodologia de criação do número
     metric_str = ""
     for number in numbers:
         try:

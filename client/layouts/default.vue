@@ -4,6 +4,17 @@
     <Nuxt />
   </div>
 </template>
+<script>
+import Vue from "vue";
+
+export default Vue.extend({
+  head() {
+    return {
+      title: "World Dashboard",
+    };
+  },
+});
+</script>
 
 <style>
 html {

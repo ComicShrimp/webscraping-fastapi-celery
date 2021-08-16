@@ -84,8 +84,7 @@ def get_cache():
     if resultado is None:
         return False  # Cache Miss
 
-    resultado.decode("utf-8")
-    return json.loads(resultado)
+    return json.loads(resultado.decode("utf-8"))
 
 
 @app.get("/")

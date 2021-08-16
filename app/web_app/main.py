@@ -1,10 +1,10 @@
-from urllib.request import Request, urlopen
+import json
 
+import redis
 from bs4 import BeautifulSoup
 from fastapi import FastAPI
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-
 
 app = FastAPI()
 
@@ -64,8 +64,36 @@ def metrics_from_worldometers():
     }
 
 
+def connect_redis():
+    # TODO: usar .env
+    return redis.Redis(host="cache", port=6379)
+
+
+EXPIRATION = 30
+
+
+def save_in_cache(metrics):
+    r = connect_redis()
+    r.set("metrics", json.dumps(metrics), ex=EXPIRATION)
+
+
+def get_cache():
+    r = connect_redis()
+    resultado = r.get("metrics")
+    if resultado is None:
+        return False  # Cache Miss
+
+    resultado.decode("utf-8")
+    return json.loads(resultado)
+
+
 @app.get("/")
 async def root():
-    worldometers = metrics_from_worldometers()
+    metrics_cache = get_cache()
+    if not metrics_cache:
+        worldometers = metrics_from_worldometers()
+        metrics = {"worldometers": worldometers}
+        save_in_cache(metrics)
+        return metrics
 
-    return {"worldometers": worldometers}
+    return metrics_cache

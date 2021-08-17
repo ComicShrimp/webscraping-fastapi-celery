@@ -43,4 +43,15 @@ def get_metrics_worldometers():
         "desertificacao_este_ano": metrics_worldometers.get_by_rel(
             "desert_land_formed/this_year"
         ),
+        "quimicos_liberados": metrics_worldometers.get_by_rel("tox_chem/this_year"),
+        # Água
+        "consumo_agua_este_ano": metrics_worldometers.get_by_rel(
+            "water_consumed/this_year"
+        ),
+        "mortes_doencas_agua_este_ano": metrics_worldometers.get_by_rel(
+            "water_disax/this_year"
+        ),
+        "populacao_sem_acesso_a_agua_potavel": metrics_worldometers.get_by_rel(
+            "nowater_population"
+        ),
     }

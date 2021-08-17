@@ -3,7 +3,7 @@
     <div class="inicio">
       <img id="logo" src="../assets/Logo.svg" alt="World Dashboard logo" />
       <h1>Bem-vindo(a) ao World Dashboard !</h1>
-      <p>Este site destina-se à agregar várias informações sobre o meio metricas</p>
+      <p>Conheça dados sobre o meio ambiente</p>
       <div id="footer-incio">
         <b-icon
           id="arrow-down-icon"
@@ -15,7 +15,10 @@
     </div>
     <div class="cards">
       <section ref="metricas" id="metricas">
-        <h2 id="card-group-title">Métricas</h2>
+        <h2 id="card-group-title">Dados</h2>
+        <div id="card-group-subtitle">
+          <span>Esses são alguns dados alarmantes sobre o nosso planeta</span>
+        </div>
         <b-card-group deck>
           <b-card id="agua_usada" header="Água Usada" border-variant="dark">
             <b-card-title
@@ -180,7 +183,12 @@ export default {
 
 #card-group-title {
   text-align: center;
-  margin: 5vh 0vw 5vh 0vw;
+  margin: 5vh 0vw 0vh 0vw;
+}
+
+#card-group-subtitle {
+  text-align: center;
+  margin: 0vh 0vw 2vh 0vw;
 }
 
 .less-cards {

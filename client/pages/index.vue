@@ -2,7 +2,7 @@
   <div class="content">
     <div class="inicio">
       <img id="logo" src="../assets/Logo.svg" alt="World Dashboard logo" />
-      <h1>Bem-vindo(a) ao World Dashboard !</h1>
+      <h1>Bem-vindo(a) ao World Dashboard!</h1>
       <p>Conheça dados sobre o meio ambiente</p>
       <div id="footer-incio">
         <b-icon
@@ -62,7 +62,7 @@
               ><b-icon icon="exclamation-triangle"></b-icon>
               {{ quimicos_liberados.toLocaleString("pt-BR") }} Toneladas</b-card-title
             >
-            <b-card-text>liberados no metricas</b-card-text>
+            <b-card-text>liberados no meio ambiente</b-card-text>
           </b-card>
         </b-card-group>
 

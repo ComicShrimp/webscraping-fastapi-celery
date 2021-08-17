@@ -19,7 +19,7 @@ app.add_middleware(
 )
 
 
-class PageVisit:
+class WebBrowser:
     def __init__(self):
         chrome_options = Options()
         chrome_options.add_argument("--headless")
@@ -30,14 +30,14 @@ class PageVisit:
             "/usr/src/app/webdriver/chromedriver", chrome_options=chrome_options
         )
 
-    def get_html(self, url):
+    def get_html_from_url(self, url):
         self.browser.get(url)
         return self.browser.page_source
 
 
 class MetricsWorldometers:
     def __init__(self):
-        html = PageVisit().get_html("https://www.worldometers.info")
+        html = WebBrowser().get_html_from_url("https://www.worldometers.info")
         self.bs = BeautifulSoup(html, "html.parser")
 
     def get_by_rel(self, rel):

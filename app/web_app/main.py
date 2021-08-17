@@ -5,8 +5,18 @@ from bs4 import BeautifulSoup
 from fastapi import FastAPI
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from starlette.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+    expose_headers=["X-Message-Code", "content-disposition"],
+)
 
 
 class PageVisit:
@@ -54,11 +64,11 @@ def metrics_from_worldometers():
         "emissoes_co2_este_ano": get_metric_from_worldometers(
             "co2_emissions/this_year"
         ),
-        "dias_para_acabar_o_petroleo": get_metric_from_worldometers("oil_reserves"),
+        "barris_de_petroleo_restante": get_metric_from_worldometers("oil_reserves"),
         "populacao_sem_acesso_a_agua_potavel": get_metric_from_worldometers(
             "nowater_population"
         ),
-        "desertificacao_em_toneladas_este_ano": get_metric_from_worldometers(
+        "desertificacao_este_ano": get_metric_from_worldometers(
             "desert_land_formed/this_year"
         ),
     }

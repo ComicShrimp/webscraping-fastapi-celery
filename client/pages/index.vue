@@ -1,10 +1,14 @@
 <template>
   <div class="content">
-    <img src="../assets/Logo.svg" alt="World Dashboard logo" />
-    <h1>Bem vindo(a) ao World Dashboard !!!</h1>
-    <div class="content">
+    <div class="inicio">
+      <img id="logo" src="../assets/Logo.svg" alt="World Dashboard logo" />
+      <h1>Bem-vindo(a) ao World Dashboard !</h1>
       <p>Este site destina-se à agregar várias informações sobre o meio ambiente.</p>
+      <b-icon icon="arrow-down-circle" animation="cylon-vertical"></b-icon>
     </div>
+    <section id="metricas" class="info-header">
+      <h1 class="titulo">Métricas</h1>
+    </section>
     <div class="cards">
       <b-card-group deck>
         <b-card header="Florestas perdidas">
@@ -25,6 +29,8 @@
 </template>
 
 <script lang="js">
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
+
 export default {
     data(){
         return {
@@ -47,9 +53,25 @@ export default {
 
 <style>
 .cards {
-  display: flex;
   align-items: center;
-  width: 100%;
+  margin: 2% 5% 5% 5%;
   justify-content: center;
+}
+
+.inicio {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+  margin: 5% 0% 0% 0%;
+}
+
+.titulo {
+  text-align: center;
+}
+
+#logo {
+  width: 30%;
+  margin: 0% 0% 5% 0%;
 }
 </style>

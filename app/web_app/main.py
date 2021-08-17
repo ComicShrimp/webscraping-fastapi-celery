@@ -19,7 +19,7 @@ app.add_middleware(
 )
 
 
-class PageVisit:
+class WebBrowser:
     def __init__(self):
         chrome_options = Options()
         chrome_options.add_argument("--headless")
@@ -30,58 +30,62 @@ class PageVisit:
             "/usr/src/app/webdriver/chromedriver", chrome_options=chrome_options
         )
 
-    def get_html(self, url):
+    def get_html_from_url(self, url):
         self.browser.get(url)
         return self.browser.page_source
 
 
-def get_metric_from_worldometers(rel):
-    html = PageVisit().get_html("https://www.worldometers.info")
+class MetricsWorldometers:
+    def __init__(self):
+        html = WebBrowser().get_html_from_url("https://www.worldometers.info")
+        self.bs = BeautifulSoup(html, "html.parser")
 
-    bs = BeautifulSoup(html, "html.parser")
+    def get_by_rel(self, rel):
+        parent = self.bs.find("span", {"rel": rel})
+        numbers = parent.findChildren("span")
 
-    parent = bs.find("span", {"rel": rel})
-    numbers = parent.findChildren("span")
+        # Provavelmente não é o melhor jeito de pegar esse valor numérico mas funciona
+        # TODO: melhorar essa metodologia de criação do número
+        metric_str = ""
+        for number in numbers:
+            try:
+                if int(number.text) > 0:
+                    metric_str += number.text
+            except:
+                pass
 
-    # Provavelmente não é o melhor jeito de pegar esse valor numérico mas funciona
-    # TODO: melhorar essa metodologia de criação do número
-    metric_str = ""
-    for number in numbers:
-        try:
-            if int(number.text) > 0:
-                metric_str += number.text
-        except:
-            pass
-
-    return int(metric_str)
+        return int(metric_str)
 
 
 def metrics_from_worldometers():
+    metrics_worldometers = MetricsWorldometers()
+
     return {
-        "perda_de_floresta_este_ano": get_metric_from_worldometers(
+        "perda_de_floresta_este_ano": metrics_worldometers.get_by_rel(
             "forest_loss/this_year"
         ),
-        "emissoes_co2_este_ano": get_metric_from_worldometers(
+        "emissoes_co2_este_ano": metrics_worldometers.get_by_rel(
             "co2_emissions/this_year"
         ),
-        "barris_de_petroleo_restante": get_metric_from_worldometers("oil_reserves"),
-
-        
-        "desertificacao_este_ano": get_metric_from_worldometers(
+        "barris_de_petroleo_restante": metrics_worldometers.get_by_rel("oil_reserves"),
+        "populacao_sem_acesso_a_agua_potavel": metrics_worldometers.get_by_rel(
+            "nowater_population"
+        ),
+        "desertificacao_este_ano": metrics_worldometers.get_by_rel(
             "desert_land_formed/this_year"
         ),
-        "quimicos_liberados": get_metric_from_worldometers(
+        "quimicos_liberados": metrics_worldometers.get_by_rel(
             "tox_chem/this_year"
         ),
 
         # Água
-        "consumo_agua_este_ano": get_metric_from_worldometers(
+        "consumo_agua_este_ano": metrics_worldometers.get_by_rel(
             "water_consumed/this_year"
         ),
-        "mortes_doencas_agua_este_ano": get_metric_from_worldometers(
+        "mortes_doencas_agua_este_ano": metrics_worldometers.get_by_rel(
             "water_disax/this_year"
         ),
-        "populacao_sem_acesso_a_agua_potavel": get_metric_from_worldometers(
+        "populacao_sem_acesso_a_agua_potavel": metrics_worldometers.get_by_rel(
             "nowater_population"
         ),
         

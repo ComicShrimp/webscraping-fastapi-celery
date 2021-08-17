@@ -30,6 +30,8 @@ def get_metrics_worldometers():
 
     # TODO: usar pydantic
     return {
+
+        # Ambiente
         "perda_de_floresta_este_ano": metrics_worldometers.get_by_rel(
             "forest_loss/this_year"
         ),
@@ -40,10 +42,8 @@ def get_metrics_worldometers():
         "populacao_sem_acesso_a_agua_potavel": metrics_worldometers.get_by_rel(
             "nowater_population"
         ),
-        "desertificacao_este_ano": metrics_worldometers.get_by_rel(
-            "desert_land_formed/this_year"
-        ),
         "quimicos_liberados": metrics_worldometers.get_by_rel("tox_chem/this_year"),
+        
         # Água
         "consumo_agua_este_ano": metrics_worldometers.get_by_rel(
             "water_consumed/this_year"
@@ -53,5 +53,13 @@ def get_metrics_worldometers():
         ),
         "populacao_sem_acesso_a_agua_potavel": metrics_worldometers.get_by_rel(
             "nowater_population"
+        ),
+
+        # Energia
+        "dias_para_acabar_gas": metrics_worldometers.get_by_rel(
+            "gas_days"
+        ),
+        "dias_para_acabar_carvao": metrics_worldometers.get_by_rel(
+            "coal_days"
         ),
     }

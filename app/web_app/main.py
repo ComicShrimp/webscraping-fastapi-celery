@@ -65,12 +65,28 @@ def metrics_from_worldometers():
             "co2_emissions/this_year"
         ),
         "barris_de_petroleo_restante": get_metric_from_worldometers("oil_reserves"),
-        "populacao_sem_acesso_a_agua_potavel": get_metric_from_worldometers(
-            "nowater_population"
-        ),
+
+        
         "desertificacao_este_ano": get_metric_from_worldometers(
             "desert_land_formed/this_year"
         ),
+        "quimicos_liberados": get_metric_from_worldometers(
+            "tox_chem/this_year"
+        ),
+
+        # Água
+        "consumo_agua_este_ano": get_metric_from_worldometers(
+            "water_consumed/this_year"
+        ),
+        "mortes_doencas_agua_este_ano": get_metric_from_worldometers(
+            "water_disax/this_year"
+        ),
+        "populacao_sem_acesso_a_agua_potavel": get_metric_from_worldometers(
+            "nowater_population"
+        ),
+        
+        
+        
     }
 
 

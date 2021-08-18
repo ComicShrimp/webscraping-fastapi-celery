@@ -2,9 +2,8 @@ import json
 
 import redis
 
-# TODO: aumentar expiração
 # TODO: adicionar .env
-EXPIRATION = 30
+EXPIRATION = 43200
 
 
 def connect_redis():
